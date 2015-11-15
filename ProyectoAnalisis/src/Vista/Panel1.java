@@ -5,11 +5,10 @@
  */
 package Vista;
 
-import Modelo.Linea;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.LinkedList;
+import javafx.scene.shape.Line;
 
 /**
  *
@@ -17,7 +16,7 @@ import java.util.LinkedList;
  */
 public class Panel1 extends javax.swing.JPanel {
     private LinkedList<Point> puntos;
-    private LinkedList<Linea> lineas;
+    private LinkedList<Line> lineas;
     /**
      * Creates new form Panel1
      */
@@ -31,25 +30,30 @@ public class Panel1 extends javax.swing.JPanel {
     }
     
     public void adicionarPunto(Point p){
-        getPuntos().add(p);
+        puntos.add(p);
         repaint();
     }
-   
+    
+    public void adicionarLinea(Line l){
+        this.lineas.add(l);
+        repaint();
+    }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
         if(!puntos.isEmpty()){
-            g.setColor(Color.black);
-            for (Linea linea : lineas) {
-                g.drawLine((int)linea.getIni().getX(), (int)linea.getIni().getY(), (int)linea.getFin().getX(), (int)linea.getFin().getY());
-            }
-            g.setColor(Color.red);
-            for (Point punto : this.getPuntos()) {
-                g.fillOval((int)punto.getX()-2, (int)punto.getY()-2, 4, 4);
+            for (Point punto : this.puntos) {
+                g.fillOval((int)punto.getX()-2, (int)punto.getY()-2, 3, 3);
                  
             }
-            
+        }
+        
+        if(!lineas.isEmpty()){
+            for (Line linea : this.lineas) {
+                g.drawLine((int)linea.getStartX(), (int)linea.getStartY(), (int)linea.getEndX(), (int)linea.getEndY());
+                 
+            }
         }
     }
     /**
@@ -72,35 +76,6 @@ public class Panel1 extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @return the puntos
-     */
-    public LinkedList<Point> getPuntos() {
-        return puntos;
-    }
-
-    /**
-     * @param puntos the puntos to set
-     */
-    public void setPuntos(LinkedList<Point> puntos) {
-        this.puntos = puntos;
-    }
-
-    /**
-     * @return the lineas
-     */
-    public LinkedList<Linea> getLineas() {
-        return lineas;
-    }
-
-    /**
-     * @param lineas the lineas to set
-     */
-    public void setLineas(LinkedList<Linea> lineas) {
-        this.lineas = lineas;
-        this.repaint();
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
