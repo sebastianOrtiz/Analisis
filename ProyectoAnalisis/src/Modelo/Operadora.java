@@ -74,7 +74,7 @@ public class Operadora {
             int mitad = puntosOdenados.size() / 2;
             if (orientacion) {
                 l = new Linea(new Point((int) puntosOdenados.get(mitad).getX(), iniHeight), new Point((int) puntosOdenados.get(mitad).getX(), finHeight));
-                particionarRec(sacarPorcion(pts, 0, mitad - 1), iniWidth, iniHeight, (int) puntosOdenados.get(mitad).getX(), finHeight, !orientacion);
+                particionarRec(sacarPorcion(pts, 0, mitad), iniWidth, iniHeight, (int) puntosOdenados.get(mitad).getX(), finHeight, !orientacion);
                 particionarRec(sacarPorcion(pts, mitad + 1, puntosOdenados.size()), (int) puntosOdenados.get(mitad).getX(), iniHeight, finWidth, finHeight, !orientacion);
             } else {
                 l = new Linea(new Point(iniWidth, (int) puntosOdenados.get(mitad).getY()), new Point(finWidth, (int) puntosOdenados.get(mitad).getY()));
