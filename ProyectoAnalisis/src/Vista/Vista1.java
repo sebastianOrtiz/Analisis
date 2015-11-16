@@ -7,6 +7,8 @@ package Vista;
 
 import Modelo.*;
 import java.awt.Point;
+import java.util.LinkedList;
+import java.util.List;
 import javafx.scene.shape.Line;
 
 /**
@@ -14,13 +16,16 @@ import javafx.scene.shape.Line;
  * @author Ambrosio
  */
 public class Vista1 extends javax.swing.JFrame {
+
     private Operadora operadora;
+
     /**
      * Creates new form Vista1
      */
     public Vista1() {
         initComponents();
-        this.operadora = new Operadora(this.panel11.getHeight(),this.panel11.getWidth());
+        operadora = new Operadora();
+
     }
 
     /**
@@ -33,6 +38,7 @@ public class Vista1 extends javax.swing.JFrame {
     private void initComponents() {
 
         panel11 = new Vista.Panel1();
+        btnPintarLineas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -56,13 +62,24 @@ public class Vista1 extends javax.swing.JFrame {
             .addGap(0, 244, Short.MAX_VALUE)
         );
 
+        btnPintarLineas.setText("pintar Lineas");
+        btnPintarLineas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPintarLineasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnPintarLineas)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -70,19 +87,24 @@ public class Vista1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPintarLineas)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void panel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel11MouseClicked
-        this.operadora.adicionarPunto(new Point(evt.getX(),evt.getY()));
-        panel11.adicionarPunto(this.operadora.getPuntos().getLast());
-        Line []l = this.operadora.lineasInciales();
-        panel11.adicionarLinea(l[0]);
-        panel11.adicionarLinea(l[1]);
+        panel11.adicionarPunto(new Point(evt.getX(), evt.getY()));
     }//GEN-LAST:event_panel11MouseClicked
+
+    private void btnPintarLineasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPintarLineasActionPerformed
+        operadora.definirPuntos(panel11.getPuntos());
+        LinkedList<Point> puntos = panel11.getPuntos();
+        operadora.particionar(puntos, panel11.getWidth(), panel11.getHeight());
+        panel11.setLineas(operadora.getLineas());
+    }//GEN-LAST:event_btnPintarLineasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +142,7 @@ public class Vista1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPintarLineas;
     private Vista.Panel1 panel11;
     // End of variables declaration//GEN-END:variables
 }
