@@ -102,8 +102,8 @@ public class Vista1 extends javax.swing.JFrame {
     private void btnPintarLineasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPintarLineasActionPerformed
         operadora.definirPuntos(panel11.getPuntos());
         LinkedList<Point> puntos = panel11.getPuntos();
-        operadora.particionar(puntos, panel11.getWidth(), panel11.getHeight());
-        panel11.setLineas(operadora.getLineas());
+        operadora.particionarConArbol(puntos, panel11.getWidth(), panel11.getHeight());
+        panel11.setLineas(operadora.obtenerLineasDelArbol());
     }//GEN-LAST:event_btnPintarLineasActionPerformed
 
     /**
