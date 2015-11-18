@@ -120,6 +120,7 @@ public class Vista1 extends javax.swing.JFrame {
 
     private void btnPintarAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPintarAreasActionPerformed
         this.panel11.setCuadrados(this.operadora.getCuadrados());
+        System.out.println(this.operadora.getCuadrados().size());
         this.panel11.repaint();
     }//GEN-LAST:event_btnPintarAreasActionPerformed
 

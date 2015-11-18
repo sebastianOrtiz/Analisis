@@ -66,7 +66,9 @@ public class Operadora {
     }
 
     public void particionarConArbol(LinkedList<Point> puntos, int ancho, int alto) {
+        this.cuadrados.removeAll(cuadrados);
         particionarRecArbol(arbol.getRaiz(), puntos, 0, 0, ancho, alto, false);
+        
     }
 
     private void particionarRecArbol(Nodo<DatoNodo> raiz, LinkedList<Point> pts, int anchoInicial, int altoInicial, int anchoFinal, int altoFinal, boolean orientacion) {
@@ -148,8 +150,8 @@ public class Operadora {
                 alto2 = (int) (altoFinal - pts.getFirst().getY());
             }
 
-            //this.getCuadrados().add(new Cuadrado(puntoInicialCuadrado1, ancho1, alto1, 128, 100, 53));
-            //this.getCuadrados().add(new Cuadrado(puntoInicialCuadrado2, ancho2, alto2, 53, 100, 128));
+            this.getCuadrados().add(new Cuadrado(puntoInicialCuadrado1, ancho1, alto1, 128, 100, 53));
+            this.getCuadrados().add(new Cuadrado(puntoInicialCuadrado2, ancho2, alto2, 53, 100, 128));
         }
     }
 
