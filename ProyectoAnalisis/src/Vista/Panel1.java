@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Modelo.Cuadrado;
 import Modelo.Linea;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -16,42 +17,52 @@ import java.util.LinkedList;
  * @author Ambrosio
  */
 public class Panel1 extends javax.swing.JPanel {
+
     private LinkedList<Point> puntos;
     private LinkedList<Linea> lineas;
+    private LinkedList<Cuadrado> cuadrados;
+
     /**
      * Creates new form Panel1
      */
-    
-    
+
     public Panel1() {
         initComponents();
         this.puntos = new LinkedList<>();
         this.lineas = new LinkedList<>();
-        
+        this.cuadrados = new LinkedList<>();
+
     }
-    
-    public void adicionarPunto(Point p){
+
+    public void adicionarPunto(Point p) {
         getPuntos().add(p);
         repaint();
     }
-   
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
-        if(!puntos.isEmpty()){
+        
+        if(!this.cuadrados.isEmpty()){
+            for (Cuadrado cuadrado : this.getCuadrados()) {
+                cuadrado.dibujarCuadrado(g);
+            }
+        }
+        if (!this.lineas.isEmpty()) {
+            
             g.setColor(Color.black);
             for (Linea linea : lineas) {
-                g.drawLine((int)linea.getIni().getX(), (int)linea.getIni().getY(), (int)linea.getFin().getX(), (int)linea.getFin().getY());
+                g.drawLine((int) linea.getIni().getX(), (int) linea.getIni().getY(), (int) linea.getFin().getX(), (int) linea.getFin().getY());
             }
+        }
+        if (!this.puntos.isEmpty()) {
             g.setColor(Color.red);
             for (Point punto : this.getPuntos()) {
-                g.fillOval((int)punto.getX()-2, (int)punto.getY()-2, 4, 4);
-                 
+                g.fillOval((int) punto.getX() - 2, (int) punto.getY() - 2, 4, 4);
             }
-            
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,10 +113,23 @@ public class Panel1 extends javax.swing.JPanel {
         this.repaint();
     }
 
+    /**
+     * @return the cuadrados
+     */
+    public LinkedList<Cuadrado> getCuadrados() {
+        return cuadrados;
+    }
+
+    /**
+     * @param cuadrados the cuadrados to set
+     */
+    public void setCuadrados(LinkedList<Cuadrado> cuadrados) {
+        this.cuadrados = cuadrados;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
     /**
      * @return the puntos
      */

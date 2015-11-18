@@ -39,6 +39,7 @@ public class Vista1 extends javax.swing.JFrame {
 
         panel11 = new Vista.Panel1();
         btnPintarLineas = new javax.swing.JButton();
+        btnPintarAreas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -69,6 +70,13 @@ public class Vista1 extends javax.swing.JFrame {
             }
         });
 
+        btnPintarAreas.setText("pintar Areas");
+        btnPintarAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPintarAreasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,6 +87,8 @@ public class Vista1 extends javax.swing.JFrame {
                     .addComponent(panel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnPintarLineas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPintarAreas)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -88,7 +98,9 @@ public class Vista1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPintarLineas)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPintarLineas)
+                    .addComponent(btnPintarAreas))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -105,6 +117,11 @@ public class Vista1 extends javax.swing.JFrame {
         operadora.particionarConArbol(puntos, panel11.getWidth(), panel11.getHeight());
         panel11.setLineas(operadora.obtenerLineasDelArbol());
     }//GEN-LAST:event_btnPintarLineasActionPerformed
+
+    private void btnPintarAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPintarAreasActionPerformed
+        this.panel11.setCuadrados(this.operadora.getCuadrados());
+        this.panel11.repaint();
+    }//GEN-LAST:event_btnPintarAreasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,6 +159,7 @@ public class Vista1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPintarAreas;
     private javax.swing.JButton btnPintarLineas;
     private Vista.Panel1 panel11;
     // End of variables declaration//GEN-END:variables
